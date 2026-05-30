@@ -12,3 +12,5 @@ Multivendor Cloud Native Marketplace for Images & Artifacts
 - [PayPal Agent Payments Protocol](https://developer.paypal.com/community/blog/PayPal-Agent-Payments-Protocol/)
 - [Stripe Machine Payments Protocol](https://stripe.com/blog/machine-payments-protocol)
 - [CSA Secure Use of AP2](https://cloudsecurityalliance.org/blog/2025/10/06/secure-use-of-the-agent-payments-protocol-ap2-a-framework-for-trustworthy-ai-driven-transactions)
+- [CNCF Landscape](https://landscape.cncf.io/)
+- [PCI DSS Standards](https://www.pcisecuritystandards.org/standards/pci-dss/)

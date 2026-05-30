@@ -1,0 +1,59 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: marketplace
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: marketplace-config
+  namespace: marketplace
+data:
+  PORT: "3000"
+  LOG_LEVEL: "info"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: marketplace-api
+  namespace: marketplace
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: marketplace-api
+  template:
+    metadata:
+      labels:
+        app: marketplace-api
+    spec:
+      containers:
+      - name: api
+        image: unboxd/marketplace-api:latest
+        ports:
+        - containerPort: 3000
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 3000
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "250m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: marketplace-api
+  namespace: marketplace
+spec:
+  selector:
+    app: marketplace-api
+  ports:
+  - port: 80
+    targetPort: 3000
+  type: LoadBalancer
